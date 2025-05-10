@@ -59,9 +59,10 @@ export default function App() {
               </Button>
                 <div className="flex items-center justify-center mt-8 relative">
                   <div className="flex -space-x-2 mr-4">
-                    <Avatar initials="JD" index={0} />
-                    <Avatar initials="AS" index={1} />
+                    <Avatar initials="LM" index={0} />
+                    <Avatar initials="RM" index={1} />
                     <Avatar initials="MK" index={2} />
+                    <Avatar initials="JK" index={3} />
                   </div>
                   <p className="text-white font-semibold m-0">50+ people on the waitlist.</p>
                 </div>
