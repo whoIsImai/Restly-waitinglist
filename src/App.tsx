@@ -5,17 +5,31 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { CheckCircle, Mail } from "lucide-react";
 import Avatar from './components/Avatar';
+import { initializeApp } from "firebase/app";
+import { getFirestore, collection, addDoc } from "firebase/firestore";
+import { firebaseConfig } from './lib/firebase';
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
 export default function App() {
 
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async(e: React.FormEvent) => {
     e.preventDefault();
     if (email) {
-      console.log("Preview mode - email captured:", email);
-      setSubmitted(true);
+       try {
+        await addDoc(collection(db, "waiting_list"), {
+          email,
+          timestamp: new Date(),
+        });
+        console.log("Preview mode - email captured:", email);
+        setSubmitted(true);
+      } catch (error) {
+        console.error("Error saving to Firestore:", error);
+      }
     }
   };
 
