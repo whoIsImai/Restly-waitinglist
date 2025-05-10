@@ -33,11 +33,10 @@ export default function App() {
             <p className="text-center">
               Who is Restly?
             <br />
-              - Its a student starting a new journey of college or Uni and looking for a place to stay. <br />
-              - Its a traveler looking for a place to stay for a few days or weeks even months. <br />
-              - Its a family looking for a new home. <br />
-              - Its property owners looking for tenants. <br />
-              - Its a BnB owner looking for travelers. <br />
+              - It's a student starting a new journey of college or Uni and looking for a place to stay. <br />
+              - It's a traveler looking for a place to stay for a few days or weeks even months. <br />
+              - It's property owners looking for tenants, It's a BnB owner looking for travelers. <br />
+              - It's a family looking for a new home.
              </p> 
            
             <strong>Get notified when we launch!</strong>
