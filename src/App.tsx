@@ -16,25 +16,39 @@ export default function App() {
 
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async(e: React.FormEvent) => {
     e.preventDefault();
     if (email) {
+      setLoading(true);
        try {
         await addDoc(collection(db, "waiting_list"), {
           email,
           timestamp: new Date(),
         });
-        console.log("Preview mode - email captured:", email);
         setSubmitted(true);
       } catch (error) {
         console.error("Error saving to Firestore:", error);
+      } finally {
+        setLoading(false);
       }
     }
   };
 
   return (
+    
     <div className="min-h-screen bg-gray-900 text-white flex items-center justify-center p-4">
+      {loading && (
+       <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+          <div className="flex flex-row gap-2">
+            <div className="w-4 h-4 rounded-full bg-blue-700 animate-bounce"></div>
+            <div className="w-4 h-4 rounded-full bg-blue-700 animate-bounce [animation-delay:-.3s]"></div>
+            <div className="w-4 h-4 rounded-full bg-blue-700 animate-bounce [animation-delay:-.5s]"></div>
+          </div>
+        </div>
+
+      )}
       <Card className="max-w-lg w-full bg-gray-900 text-white shadow-2xl rounded-2xl p-6">
         <CardContent className="space-y-6">
           <h1 className="text-3xl font-bold text-center">
